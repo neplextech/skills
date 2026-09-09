@@ -1,0 +1,44 @@
+# Structured handoff for domain investigators.
+# Copy to <docs_dir>/handoffs/<id>.yml, one per domain. Keep under ~60 lines.
+# Other agents read this file in full. Detail lives in research/<id>.md.
+
+module: example
+title: Example domain
+commit: abc123
+status: researched
+
+entities:
+  - Example
+  - ExampleMembership
+
+states:
+  Example:
+    - PENDING
+    - ACTIVE
+    - DISABLED
+
+writes:
+  - create (precondition: signed request; enforcement: src/example/validation.py)
+  - confirm (transition: PENDING to ACTIVE)
+  - disable (transition: any to DISABLED; role: staff)
+
+reads:
+  - list scoped by organization (enforcement: src/example/scoping.py)
+
+events:
+  emitted:
+    - example.created (payload: example id; evidence: src/example/events.py)
+  consumed:
+    - accounts.deactivated (effect: disable member examples)
+
+side_effects:
+  - welcome message enqueued (job: send-welcome; evidence: src/workers/jobs.py)
+  - cache key example:{id} invalidated
+
+related_modules:
+  - accounts
+  - access-control
+
+uncertainties:
+  - Exact retry behavior for send-welcome could not be established.
+  - Partial updates after DISABLED are unclear; no handler confirms them.

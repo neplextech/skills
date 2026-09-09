@@ -1,0 +1,41 @@
+# Project-local configuration for the documentation skill.
+# Copy to the target repository root as docs.config.yml and adjust.
+# All fields are optional. Sensible defaults apply when this file is absent.
+
+version: 1
+
+# Where canonical docs, research, and the manifest live.
+docs_dir: docs/internal
+
+# Where investigation notes live, relative to the repository root.
+# Defaults to <docs_dir>/research when omitted.
+research_dir: docs/internal/research
+
+# Paths the mapper and helper skip. Uses path prefixes or glob patterns.
+ignore:
+  - node_modules
+  - dist
+  - build
+  - generated
+  - .git
+  - vendor
+
+# Where to start repository discovery. Defaults to the repository root.
+entrypoints:
+  - src
+
+# Sources the mapper reads first. Free form groups of paths.
+important_sources:
+  database:
+    - db/schema.sql
+    - db/migrations
+  api:
+    - src/routes
+  workers:
+    - src/workers
+
+# Intended audiences. Used for default frontmatter suggestions.
+documentation:
+  audiences:
+    - engineering
+    - qa

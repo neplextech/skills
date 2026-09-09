@@ -1,0 +1,17 @@
+{
+  "name": "@neplex/skills",
+  "version": "0.0.0",
+  "description": "A collection of skills maintained by Neplex",
+  "main": "index.js",
+  "private": true,
+  "scripts": {},
+  "keywords": [],
+  "author": "Neplex Technologies",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neplextech/skills.git"
+  },
+  "packageManager": "pnpm@12.3.4",
+  "type": "module"
+}

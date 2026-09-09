@@ -1,5 +1,19 @@
 interface:
   display_name: "Documentation"
-  short_description: "Generate structured documentation of the codebase"
+  short_description: "Document a codebase in bounded, verified chunks"
+  long_description: "Study a software repository as evidence and produce maintainable Markdown docs for engineering onboarding, QA, architecture, and troubleshooting. Works sequentially or with parallel subagents. Research, writing, verification, cross-domain workflows, and QA passes included."
 policy:
   allow_implicit_invocation: false
+entrypoint: "SKILL.md"
+version: 1
+audience:
+  - engineering
+  - qa
+outputs:
+  - Markdown documentation under a project docs directory
+  - module manifest tracking verification state
+requires:
+  - read access to the target repository
+optional:
+  - subagent runtime for parallel investigation
+  - Python 3 for scripts/docs.py (standard library only, never required)

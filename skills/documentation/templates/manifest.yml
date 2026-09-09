@@ -1,0 +1,42 @@
+# Module manifest. Copy to <docs_dir>/manifest.yml once domains are mapped.
+# This file is the source of truth for documentation progress.
+# Statuses: discovered, researching, researched, documenting, documented,
+# verifying, verified, needs-review.
+
+modules:
+  - id: accounts
+    title: Accounts
+    status: discovered
+    paths:
+      - src/accounts
+      - db/migrations/010_accounts.sql
+    depends_on: []
+    doc: modules/accounts.md
+    research: research/accounts.md
+    verified_commit: null
+    notes: ""
+
+  - id: access-control
+    title: Access control
+    status: discovered
+    paths:
+      - src/auth
+    depends_on:
+      - accounts
+    doc: modules/access-control.md
+    research: research/access-control.md
+    verified_commit: null
+    notes: ""
+
+  - id: notifications
+    title: Notifications
+    status: discovered
+    paths:
+      - src/notifications
+      - src/workers/jobs.py
+    depends_on:
+      - accounts
+    doc: modules/notifications.md
+    research: research/notifications.md
+    verified_commit: null
+    notes: ""
