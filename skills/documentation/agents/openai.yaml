@@ -1,0 +1,5 @@
+interface:
+  display_name: "Documentation"
+  short_description: "Generate structured documentation of the codebase"
+policy:
+  allow_implicit_invocation: false
